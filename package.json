@@ -4,6 +4,7 @@
   "description": "学习 webpack4.x入门配置",
   "main": "index.js",
   "scripts": {
+    "build": "webpack --mode=development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

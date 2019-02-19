@@ -1,4 +1,5 @@
 const path = require("path")
+const uglify = require("uglifyjs-webpack-plugin")
 
 module.exports = {
   mode: 'development',
@@ -29,7 +30,9 @@ module.exports = {
     ]
   },
   // 插件：用于生产模块和各项功能
-  plugins: [],
+  plugins: [
+    new uglify()
+  ],
   // 配置webpack开发服务功能，如 热模块更新作用hot
   devServer: {
     // contentBase 设置基本目录结构

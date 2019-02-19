@@ -32,7 +32,10 @@ module.exports = {
         test: /\.css$/,
         use: extractTextPlugin.extract({
           fallback: "style-loader",
-          use: "css-loader"
+          use: [
+            { loader: "css-loader" },
+            { loader: "postcss-loader" }
+          ]
         })
         // css分离后以下需要重新配置，下面就注释了
         /* use: [
@@ -68,6 +71,8 @@ module.exports = {
             loader: 'css-loader'
           }, {
             loader: 'less-loader'
+          }, {
+            loader: 'postcss-loader'
           }]
         })
         // less分离后以下需要重新配置，下面就注释了
@@ -88,6 +93,8 @@ module.exports = {
             loader: 'css-loader'
           }, {
             loader: 'sass-loader'
+          }, {
+            loader: 'postcss-loader'
           }]
         })
         // less分离后以下需要重新配置，下面就注释了

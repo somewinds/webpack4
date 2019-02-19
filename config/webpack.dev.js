@@ -3,6 +3,11 @@ const uglify = require("uglifyjs-webpack-plugin") // 引入js压缩插件
 const htmlPlugin = require("html-webpack-plugin") // html打包插件
 const extractTextPlugin = require("extract-text-webpack-plugin") // css分离
 
+var website = {
+  publicPath: "http://localhost:8899/"
+}
+// 这里的IP和端口，是你本机的ip或者是你devServer配置的IP和端口。
+
 module.exports = {
   mode: 'development',
   // 入口文件配置项
@@ -16,7 +21,8 @@ module.exports = {
     // 打包的路径
     path: path.resolve(__dirname, '../dist'),
     // 打包的文件名称
-    filename: '[name].js' // 这里name是告诉我们入口进去的是什么名字，打包出来也同样是什么名字
+    filename: '[name].js', // 这里name是告诉我们入口进去的是什么名字，打包出来也同样是什么名字
+    publicPath: website.publicPath // publicPath 主要作用就是处理静态文件路径的
   },
   // 模块：例如解读CSS，图片如何转换，压缩等
   module: {

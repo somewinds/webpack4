@@ -113,11 +113,12 @@ module.exports = {
         test: /.(jsx|js)$/,
         use: {
           loader: 'babel-loader',
-          options: {
+          // babel配置移动到 .babelrc 中，所以下面注释
+          /* options: {
             presets: [
               "es2015", "react"
             ]
-          }
+          } */
         },
         exclude: /node_modules/
       }

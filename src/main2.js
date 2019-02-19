@@ -1,0 +1,1 @@
+document.getElementById('study').style = 'color: green';

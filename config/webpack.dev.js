@@ -78,6 +78,26 @@ module.exports = {
         }, {
           loader: 'less-loader' // compiles Less to CSS
         }] */
+      },
+      // scss loader
+      {
+        test: /\.scss$/,
+        use: extractTextPlugin.extract({
+          fallback: "style-loader",
+          use: [{
+            loader: 'css-loader'
+          }, {
+            loader: 'sass-loader'
+          }]
+        })
+        // less分离后以下需要重新配置，下面就注释了
+        /* use: [{
+          loader: 'style-loader' // creates style nodes from JS strings
+        }, {
+          loader: 'css-loader' // translates CSS into CommonJS
+        }, {
+          loader: 'sass-loader' // compiles Less to CSS
+        }] */
       }
     ]
   },

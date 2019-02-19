@@ -2,3 +2,15 @@ body{
   background-color: cadetblue;
   color: yellow;
 }
+
+.img1{
+  background: url(../images/8kb.jpg) 100%/100% no-repeat;
+  width: 100px;
+  height: 100px;
+}
+
+.img2{
+  background: url(../images/107kb.jpg) 100%/100% no-repeat;
+  width: 300px;
+  height: 300px;
+}

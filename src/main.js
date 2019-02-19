@@ -1,3 +1,3 @@
 import css from './css/index.css'
 
-alert("this is main.js")
+console.log("this is main.js")

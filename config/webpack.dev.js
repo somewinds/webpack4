@@ -20,12 +20,25 @@ module.exports = {
   // 模块：例如解读CSS，图片如何转换，压缩等
   module: {
     rules: [
-      // css-loader
+      // css loader
       {
         test: /\.css$/,
         use: [
           { loader: "style-loader" }, 
           { loader: "css-loader" }
+        ]
+      },
+      // 图片 loader
+      {
+        test: /\.(jpg|jpeg|png|gif)/, // 匹配图片文件后缀名称
+        use: [
+          {
+            // 其实我们只安装一个url-loader就可以了。但是为了以后的操作方便，这里就顺便安装上file-loader
+            loader: 'url-loader', // 指定使用的loader和loader的配置参数
+            options: {
+              limit: 8200 // 把小于500B的文件打成Base64的格式写入js
+            }
+          }
         ]
       }
     ]

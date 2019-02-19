@@ -1,6 +1,7 @@
 const path = require("path")
-const uglify = require("uglifyjs-webpack-plugin")
-const htmlPlugin = require("html-webpack-plugin")
+const uglify = require("uglifyjs-webpack-plugin") // 引入js压缩插件
+const htmlPlugin = require("html-webpack-plugin") // html打包插件
+const extractTextPlugin = require("extract-text-webpack-plugin") // css分离
 
 module.exports = {
   mode: 'development',
@@ -23,10 +24,15 @@ module.exports = {
       // css loader
       {
         test: /\.css$/,
-        use: [
+        use: extractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader"
+        })
+        // css分离后以下余姚重新配置，下面就注释了
+        /* use: [
           { loader: "style-loader" }, 
           { loader: "css-loader" }
-        ]
+        ] */
       },
       // 图片 loader
       {
@@ -52,7 +58,8 @@ module.exports = {
       },
       hash: true, // 为了开发中js有缓存效果，所以加入hash，这样可以有效避免缓存js
       template: './src/index.html' // 是要打包的html模板路径和文件名称
-    })
+    }),
+    new extractTextPlugin('css/index.css') // 这里的 /css/index.css 是分离后的路径
   ],
   // 配置webpack开发服务功能，如 热模块更新作用hot
   devServer: {

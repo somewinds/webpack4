@@ -107,6 +107,19 @@ module.exports = {
         }, {
           loader: 'sass-loader' // compiles Less to CSS
         }] */
+      },
+      // babel 配置
+      {
+        test: /.(jsx|js)$/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              "es2015", "react"
+            ]
+          }
+        },
+        exclude: /node_modules/
       }
     ]
   },

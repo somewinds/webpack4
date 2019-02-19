@@ -4,7 +4,7 @@ const htmlPlugin = require("html-webpack-plugin") // html打包插件
 const extractTextPlugin = require("extract-text-webpack-plugin") // css分离
 
 var website = {
-  publicPath: "http://localhost:8899/"
+  publicPath: "http://localhost:7788/"
 }
 // 这里的IP和端口，是你本机的ip或者是你devServer配置的IP和端口。
 
@@ -34,7 +34,7 @@ module.exports = {
           fallback: "style-loader",
           use: "css-loader"
         })
-        // css分离后以下余姚重新配置，下面就注释了
+        // css分离后以下需要重新配置，下面就注释了
         /* use: [
           { loader: "style-loader" }, 
           { loader: "css-loader" }
@@ -48,10 +48,16 @@ module.exports = {
             // 其实我们只安装一个url-loader就可以了。但是为了以后的操作方便，这里就顺便安装上file-loader
             loader: 'url-loader', // 指定使用的loader和loader的配置参数
             options: {
-              limit: 8200 // 把小于500B的文件打成Base64的格式写入js
+              limit: 8200, // 把小于500B的文件打成Base64的格式写入js
+              outputPath: 'images/' // 打包后的图片放到images文件夹下
             }
           }
         ]
+      },
+      // 在hmtl文件中引入<img>标签的问题
+      {
+        test: /\.(html|htm)$/i,
+        use: ['html-withimg-loader']
       }
     ]
   },
@@ -80,6 +86,6 @@ module.exports = {
     // 开启虚拟服务器时，为你的代码进行压缩。加快开发流程和优化的作用。
     compress: true,
     // port 配置服务端口号
-    port: 8899
+    port: 7788
   }
 }

@@ -2,6 +2,8 @@ const path = require("path")
 const uglify = require("uglifyjs-webpack-plugin") // 引入js压缩插件
 const htmlPlugin = require("html-webpack-plugin") // html打包插件
 const extractTextPlugin = require("extract-text-webpack-plugin") // css分离
+// const glob = require("glob")
+// const PurifyCSSPlugin = require("purifycss-webpack")
 
 var website = {
   publicPath: "http://localhost:7788/"
@@ -118,7 +120,11 @@ module.exports = {
       hash: true, // 为了开发中js有缓存效果，所以加入hash，这样可以有效避免缓存js
       template: './src/index.html' // 是要打包的html模板路径和文件名称
     }),
-    new extractTextPlugin('css/index.css') // 这里的 /css/index.css 是分离后的路径
+    new extractTextPlugin('css/index.css'), // 这里的 /css/index.css 是分离后的路径
+    /* new PurifyCSSPlugin({
+      // 这里配置了一个paths，主要是需要找html模板，purifycss根据这个配置会遍历你的文件，查找哪些css被使用了
+      paths: glob.sync(path.join(__dirname, 'src/*.html'))
+    }) */
   ],
   // 配置webpack开发服务功能，如 热模块更新作用hot
   devServer: {

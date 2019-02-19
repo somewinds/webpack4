@@ -4,4 +4,13 @@ body{
     transition: all 1s ease-in;
     transform: translateX(200px);
   }
+  
+  // 以下为多余的样式
+  #box{
+    width: 200px;
+    height: 100px;
+    background: red;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
 }

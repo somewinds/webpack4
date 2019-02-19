@@ -16,7 +16,18 @@ module.exports = {
     filename: '[name].js' // 这里name是告诉我们入口进去的是什么名字，打包出来也同样是什么名字
   },
   // 模块：例如解读CSS，图片如何转换，压缩等
-  module: {},
+  module: {
+    rules: [
+      // css-loader
+      {
+        test: /\.css$/,
+        use: [
+          { loader: "style-loader" }, 
+          { loader: "css-loader" }
+        ]
+      }
+    ]
+  },
   // 插件：用于生产模块和各项功能
   plugins: [],
   // 配置webpack开发服务功能，如 热模块更新作用hot
